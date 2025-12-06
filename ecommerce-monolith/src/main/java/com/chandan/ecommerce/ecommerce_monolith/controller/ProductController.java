@@ -12,5 +12,6 @@ public class ProductController {
     @GetMapping
     public List<String> getAllProducts(){
         return List.of("Phone","Laptop","Headset");
+
     }
 }
