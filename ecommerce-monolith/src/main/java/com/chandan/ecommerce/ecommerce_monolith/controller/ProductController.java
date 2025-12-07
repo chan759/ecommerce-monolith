@@ -2,6 +2,7 @@ package com.chandan.ecommerce.ecommerce_monolith.controller;
 
 import com.chandan.ecommerce.ecommerce_monolith.entity.Product;
 import com.chandan.ecommerce.ecommerce_monolith.repository.ProductRepository;
+import com.chandan.ecommerce.ecommerce_monolith.service.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +14,17 @@ import java.util.List;
 @RequestMapping("/products")
 public class ProductController {
     @Autowired
-    private ProductRepository productRepository;
+    private ProductService productService;
 
     @GetMapping
     public List<Product> getAllProducts(){
-        return productRepository.findAll();
+        return productService.getAllProducts();
 
     }
 
     @PostMapping
     public ResponseEntity<Product> createProduct(@Valid @RequestBody Product product){
-        Product savedProduct = productRepository.save(product);
+        Product savedProduct = productService.createProduct(product);
         return ResponseEntity.ok(savedProduct);
     }
 }
